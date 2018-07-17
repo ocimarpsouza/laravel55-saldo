@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\MoneyValidationFormRequest;
 
 class BalanceController extends Controller
 {
@@ -20,9 +21,44 @@ class BalanceController extends Controller
         return view('admin.balance.deposit');
     }
 
-    public function depositStore(Request $request)
+    public function depositStore(MoneyValidationFormRequest $request)
     {
         $balance = auth()->user()->balance()->firstOrCreate([]);
-        $balance->deposit($request->value);
+        $response = $balance->deposit($request->value);
+
+        if($response['success']){
+            return redirect()->route('admin.balance')->with('success', $response['message']);
+
+        }
+
+        return redirect()->back()->with('error', $response['message']);
+
     }
+
+    public function withdraw(){
+        return view('admin.balance.withdraw');
+    }
+
+    public function withdrawStore(MoneyValidationFormRequest $request)
+    {
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $response = $balance->withdraw($request->value);
+
+        if($response['success']){
+            return redirect()->route('admin.balance')->with('success', $response['message']);
+
+        }
+
+        return redirect()->back()->with('error', $response['message']);
+
+    }
+
+    public function transfer(){
+        return view('admin.balance.transfer');
+    }
+
+    public function confirmTransfer(Request $request){
+        dd($request->all());
+    }
+
 }
