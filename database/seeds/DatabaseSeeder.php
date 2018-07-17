@@ -1,16 +1,25 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        User::create([
+            'name' => 'Ocimar Pereira de Souza',
+            'email' => 'ocimarpsouza@gmail.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        User::create([
+            'name' => 'teste',
+            'email' => 'teste@gmail.com',
+            'password' => bcrypt('123456'),
+        ]);
     }
 }

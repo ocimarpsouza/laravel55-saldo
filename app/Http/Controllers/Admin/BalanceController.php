@@ -3,11 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class BalanceController extends Controller
 {
     public function index()
     {
-        return view('admin.balance.index');
+        $balance = auth()->user()->balance;
+        $amount = $balance ? $balance->amount : 0;
+
+        return view('admin.balance.index', compact('amount'));
+    }
+
+    public function deposit()
+    {
+        return view('admin.balance.deposit');
+    }
+
+    public function depositStore(Request $request)
+    {
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $balance->deposit($request->value);
     }
 }
