@@ -103,12 +103,12 @@ class Balance extends Model
         $transfer = $this->save();
 
         $historic = auth()->user()->historics()->create([
-            'type' => 'I',
+            'type' => 'T',
             'amount' => number_format($value, 2, '.', ''),
             'total_before' => $totalBefore,
             'total_after' => $this->amount,
-            'user_id_transaction' => $sender->id,
             'date' => date('Ymd'),
+            'user_id_transaction' => $sender->id
         ]);
 
         /****************************************
@@ -121,12 +121,12 @@ class Balance extends Model
         $transferSender = $senderBalance->save();
 
         $historicSender = $sender->historics()->create([
-            'type' => 'I',
+            'type' => 'T',
             'amount' => number_format($value, 2, '.', ''),
             'total_before' => $totalBeforeSender,
             'total_after' => $senderBalance->amount,
-            'user_id_transaction' => auth()->user()->id,
             'date' => date('Ymd'),
+            'user_id_transaction' => auth()->user()->id,
         ]);
 
         if ($transfer && $historic && $transferSender && $historicSender) {
