@@ -10,7 +10,7 @@ class Balance extends Model
 {
     public $timestamps = false;
 
-    public function deposit(float $value) : Array
+    public function deposit(float $value): array
     {
         DB::beginTransaction();
 
@@ -19,38 +19,38 @@ class Balance extends Model
         $deposit = $this->save();
 
         $historic = auth()->user()->historics()->create([
-            'type'          =>  'I',
-            'amount'        =>  number_format($value, 2, '.', '') ,
-            'total_before'  =>  $totalBefore,
-            'total_after'   =>  $this->amount,
-            'date'          =>  date('Ymd'),
+            'type' => 'I',
+            'amount' => number_format($value, 2, '.', ''),
+            'total_before' => $totalBefore,
+            'total_after' => $this->amount,
+            'date' => date('Ymd'),
         ]);
 
-        if($deposit && $historic){
-
+        if ($deposit && $historic) {
             DB::commit();
+
             return [
-               'success'  => true,
-               'message'  => 'Sucesso ao recarregar'   
+               'success' => true,
+               'message' => 'Sucesso ao recarregar',
             ];
-        }else{
+        } else {
             DB::rollback();
+
             return [
-                'success'  => false,
-                'message'  => 'Falha ao recarregar'   
+                'success' => false,
+                'message' => 'Falha ao recarregar',
             ];
         }
-        
-
     }
 
-    public function withdraw(float $value) : Array
+    public function withdraw(float $value): array
     {
-        if($this->amount < $value)
+        if ($this->amount < $value) {
             return [
-                'success'  => false,
-                'message'  => 'Saldo insuficiênte'
+                'success' => false,
+                'message' => 'Saldo insuficiênte',
             ];
+        }
 
         DB::beginTransaction();
 
@@ -59,37 +59,36 @@ class Balance extends Model
         $withdraw = $this->save();
 
         $historic = auth()->user()->historics()->create([
-            'type'          =>  'O',
-            'amount'        =>  number_format($value, 2, '.', '') ,
-            'total_before'  =>  $totalBefore,
-            'total_after'   =>  $this->amount,
-            'date'          =>  date('Ymd'),
+            'type' => 'O',
+            'amount' => number_format($value, 2, '.', ''),
+            'total_before' => $totalBefore,
+            'total_after' => $this->amount,
+            'date' => date('Ymd'),
         ]);
 
-        if($withdraw && $historic){
-
+        if ($withdraw && $historic) {
             DB::commit();
+
             return [
-               'success'  => true,
-               'message'  => 'Sucesso ao retirar'   
+               'success' => true,
+               'message' => 'Sucesso ao retirar',
             ];
-        }else{
+        } else {
             DB::rollback();
+
             return [
-                'success'  => false,
-                'message'  => 'Falha ao retirar'   
+                'success' => false,
+                'message' => 'Falha ao retirar',
             ];
         }
-        
-
     }
 
-    public function transfer(float $value, User $sender) : array
+    public function transfer(float $value, User $sender): array
     {
         if ($this->amount < $value) {
             return [
-                'success'  => false,
-                'message'  => 'Saldo insuficiênte'
+                'success' => false,
+                'message' => 'Saldo insuficiênte',
             ];
         }
 
@@ -104,12 +103,12 @@ class Balance extends Model
         $transfer = $this->save();
 
         $historic = auth()->user()->historics()->create([
-            'type'                  =>  'T',
-            'amount'                =>  number_format($value, 2, '.', '') ,
-            'total_before'          =>  $totalBefore,
-            'total_after'           =>  $this->amount,
-            'user_id_transaction'   => $sender->id,
-            'date'                  =>  date('Ymd'),
+            'type' => 'I',
+            'amount' => number_format($value, 2, '.', ''),
+            'total_before' => $totalBefore,
+            'total_after' => $this->amount,
+            'user_id_transaction' => $sender->id,
+            'date' => date('Ymd'),
         ]);
 
         /****************************************
@@ -122,26 +121,27 @@ class Balance extends Model
         $transferSender = $senderBalance->save();
 
         $historicSender = $sender->historics()->create([
-            'type'                  =>  'I',
-            'amount'                =>  number_format($value, 2, '.', '') ,
-            'total_before'          =>  $totalBeforeSender,
-            'total_after'           =>  $senderBalance->amount,
-            'user_id_transaction'   => auth()->user()->id,
-            'date'                  =>  date('Ymd'),
+            'type' => 'I',
+            'amount' => number_format($value, 2, '.', ''),
+            'total_before' => $totalBeforeSender,
+            'total_after' => $senderBalance->amount,
+            'user_id_transaction' => auth()->user()->id,
+            'date' => date('Ymd'),
         ]);
 
-        if($transfer && $historic && $transferSender && $historicSender){
-
+        if ($transfer && $historic && $transferSender && $historicSender) {
             DB::commit();
+
             return [
-               'success'  => true,
-               'message'  => 'Sucesso ao transferir'   
+               'success' => true,
+               'message' => 'Sucesso ao transferir',
             ];
-        }else{
+        } else {
             DB::rollback();
+
             return [
-                'success'  => false,
-                'message'  => 'Falha ao transferir'   
+                'success' => false,
+                'message' => 'Falha ao transferir',
             ];
         }
     }
