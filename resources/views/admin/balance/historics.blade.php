@@ -57,8 +57,12 @@
                     @empty
                     @endforelse
                 </tbody>
-            </table>            
-       </div>
-       {{ $historics->links() }}
+            </table>  
+            @if (isset($dateForm))
+                {{ $historics->appends($dateForm)->links() }}  
+            @else
+                {{ $historics->links() }}
+            @endif          
+       </div>       
     </div>
 @stop
