@@ -121,7 +121,7 @@ class Balance extends Model
         $transferSender = $senderBalance->save();
 
         $historicSender = $sender->historics()->create([
-            'type' => 'T',
+            'type' => 'I',
             'amount' => number_format($value, 2, '.', ''),
             'total_before' => $totalBeforeSender,
             'total_after' => $senderBalance->amount,
