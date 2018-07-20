@@ -25,7 +25,7 @@
     </div>
     <div class="form-group">
         @if (auth()->user()->image != null)
-            <img src="{{ url('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}" style="max-width: 50px;">
+            <img src="{{ url('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}" style="max-width: 100px;">
         @endif
 
         <label for="image">Imagem</label>

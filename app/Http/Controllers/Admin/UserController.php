@@ -27,11 +27,14 @@ class UserController extends Controller
         $data['image'] = $user->image;
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            /*
             if ($user->image) {
                 $name = $user->image;
             } else {
                 $name = $user->id.kebab_case($user->name);
             }
+            */
+            $name = $user->id.kebab_case($user->name).date('dmYHis');
 
             $extension = $request->image->extension();
             $namefile = "{$name}.{$extension}";
