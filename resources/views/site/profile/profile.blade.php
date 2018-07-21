@@ -1,10 +1,17 @@
-@extends('site.layouts.app')
+@extends('adminlte::page')
 
-@section('title', 'Meu perfil')
+@section('title', 'Meu Perfil')
+
+@section('content_header')
+    <h1>Meu Perfil</h1>
+    <ol class="breadcrumb">
+        <li><a href="">Dashboard</a></li>
+        <li><a href="">Meu Perfil</a></li>
+    </ol>
+@stop
+
 
 @section('content')
-
-<h1>Meu Perfil</h1>
 
 @include('admin.includes.alerts')
 
@@ -35,5 +42,4 @@
         <button type="submit" class="btn btn-info" >Atualizar perfil</button>
     </div>
 </form>
-
-@endsection
+@stop

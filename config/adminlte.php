@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'skin' => 'black',
+    'skin' => 'purple',
 
     /*
     |--------------------------------------------------------------------------
@@ -127,6 +127,17 @@ return [
                     'url' => 'admin/historic',
                     'icon' => 'history',
                     ],
+            ],
+        ],
+        [
+            'text' => 'Admin',
+            'icon' => 'gears',
+            'submenu' => [
+                [
+                'text' => 'Meu Perfil',
+                'url' => 'admin/meu-perfil',
+                'icon' => 'user',
+                ],
             ],
         ],
     ],

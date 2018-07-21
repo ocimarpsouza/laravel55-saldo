@@ -23,10 +23,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     $this->get('balance', 'BalanceController@index')->name('admin.balance');
     $this->get('deposit', 'BalanceController@deposit')->name('balance.deposit');
     $this->post('deposit', 'BalanceController@depositStore')->name('deposit.store');
+    $this->post('atualizar-perfil', 'UserController@profileUpdate')->name('profile.update');
+    $this->get('meu-perfil', 'UserController@profile')->name('profile');
 });
-
-$this->post('atualizar-perfil', 'Admin\UserController@profileUpdate')->name('profile.update')->middleware('auth');
-$this->get('meu-perfil', 'Admin\UserController@profile')->name('profile')->middleware('auth');
 
 $this->get('/', 'Site\SiteController@index')->name('home');
 
