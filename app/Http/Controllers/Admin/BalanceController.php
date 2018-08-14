@@ -10,7 +10,7 @@ use App\Models\Historic;
 
 class BalanceController extends Controller
 {
-    private $totalPages = 2;
+    private $totalPages = 5;
 
     public function index()
     {
@@ -98,11 +98,15 @@ class BalanceController extends Controller
 
     public function historic(Historic $historic)
     {
-        $historics = auth()->user()->historics()->with(['userSender'])->paginate($this->totalPages);
-
+        $historics = $historic->first();
+        
+        $historics = $historic::paginate($this->totalPages);
+        auth()->user()->historics()->with(['userSender'])->paginate($this->totalPages);
+        
         $types = $historic->type();
 
         return view('admin.balance.historics', compact('historics', 'types'));
+        
     }
 
     public function searchHistoric(Request $request, Historic $historic)
