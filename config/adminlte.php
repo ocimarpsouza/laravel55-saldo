@@ -130,16 +130,59 @@ return [
             ],
         ],
         [
-            'text' => 'Admin',
-            'icon' => 'gears',
+            'text' => 'Posts',
+            'icon' => 'crosshairs',
             'submenu' => [
                 [
-                'text' => 'Meu Perfil',
-                'url' => 'admin/meu-perfil',
-                'icon' => 'user',
+                'text' => 'Posts',
+                'url' => 'admin/posts',
+                'icon' => 'paste',
                 ],
             ],
         ],
+        [
+            'text' => 'Meu Perfil',
+            'icon' => 'user',
+            'submenu' => [
+                [
+                'text' => 'Gerenciar perfil',
+                'url' => 'admin/meu-perfil',
+                'icon' => 'user-circle',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Configurações',
+            'icon' => 'gears',
+            'can' => ['Administer roles & permissions'],
+            'submenu' => [
+                [
+                'text' => 'Gerenciar Usuários',
+                'url' => 'admin/users',
+                'icon' => 'users',
+                'can' => 'Administer roles & permissions',
+                ],
+                [
+                'text' => 'Gerenciar Papéis',
+                'url' => 'admin/roles',
+                'icon' => 'genderless',
+                'can' => 'Administer roles & permissions',
+                ],
+                [
+                'text' => 'Gerenciar Permissões',
+                'url' => 'admin/permissions',
+                'icon' => 'universal-access',
+                'can' => 'Administer roles & permissions',
+                ],
+            ],
+        ],
+        [
+           'text' => 'Sair',
+           'icon' => 'sign-out-alt',
+           
+           
+        ],
+        
     ],
 
     /*

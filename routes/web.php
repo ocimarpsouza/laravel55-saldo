@@ -23,10 +23,22 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     $this->get('balance', 'BalanceController@index')->name('admin.balance');
     $this->get('deposit', 'BalanceController@deposit')->name('balance.deposit');
     $this->post('deposit', 'BalanceController@depositStore')->name('deposit.store');
-    $this->post('atualizar-perfil', 'UserController@profileUpdate')->name('profile.update');
-    $this->get('meu-perfil', 'UserController@profile')->name('profile');
+    $this->post('atualizar-perfil', 'PerfilController@profileUpdate')->name('profile.update');
+    $this->get('meu-perfil', 'PerfilController@profile')->name('profile');
+    $this->get('posts','PostController@index')->name('posts');  
+    
+    Route::resource('users', 'UserController');
+
+    Route::resource('roles', 'RoleController');
+
+    Route::resource('permissions', 'PermissionController');
+
+    Route::resource('posts', 'PostController');
+
+    
 });
 
 $this->get('/', 'Site\SiteController@index')->name('home');
 
 Auth::routes();
+

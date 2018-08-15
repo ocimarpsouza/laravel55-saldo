@@ -75,7 +75,8 @@
                                       <!-- Menu Footer-->
                                       <li class="user-footer">
                                         <div class="pull-left">
-                                          <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
+                                          <a href="{{ route('profile') }}" class="btn bg-purple margin"><i class="fa fa-user" aria-hidden="true"></i>
+                                            Perfil</a>
                                         </div>
                                         <div class="pull-right">
                                                 @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))

@@ -41,6 +41,7 @@
                 </thead>
                 <tbody>
                     @forelse($historics as $historic)
+                    
                     <tr>
                     <td>{{ $historic->id }}</td>
                     <td>{{ number_format($historic->amount, 2 ,',','.') }}</td>
@@ -54,6 +55,7 @@
                         @endif                    
                     </td>
                     </tr>
+
                     @empty
                     @endforelse
                 </tbody>

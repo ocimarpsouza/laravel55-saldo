@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        /*
         User::create([
             'name' => 'Ocimar Pereira de Souza',
             'email' => 'ocimarpsouza@gmail.com',
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'teste@gmail.com',
             'password' => bcrypt('123456'),
         ]);
+        */
     }
 }
