@@ -25,8 +25,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     $this->post('deposit', 'BalanceController@depositStore')->name('deposit.store');
     $this->post('atualizar-perfil', 'PerfilController@profileUpdate')->name('profile.update');
     $this->get('meu-perfil', 'PerfilController@profile')->name('profile');
-    $this->get('posts','PostController@index')->name('posts');  
-    
+    $this->get('logout', 'PerfilController@logout')->name('logout');
+    $this->get('posts', 'PostController@index')->name('posts');
+
     Route::resource('users', 'UserController');
 
     Route::resource('roles', 'RoleController');
@@ -34,11 +35,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     Route::resource('permissions', 'PermissionController');
 
     Route::resource('posts', 'PostController');
-
-    
 });
 
 $this->get('/', 'Site\SiteController@index')->name('home');
 
 Auth::routes();
-

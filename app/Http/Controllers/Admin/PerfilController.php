@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileFormRequest;
 
@@ -57,5 +56,12 @@ class PerfilController extends Controller
         }
 
         return redirect()->back()->with('error', 'Falha ao atualizar o perfil...');
+    }
+
+    public function Logout()
+    {
+        auth()->logout();
+
+        return redirect('/login');
     }
 }

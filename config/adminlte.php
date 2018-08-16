@@ -12,11 +12,11 @@ return [
     |
     */
 
-    'title' => 'App1-OPS',
+    'title' => 'Sistema',
 
     'title_prefix' => '',
 
-    'title_postfix' => 'OPS',
+    'title_postfix' => 'STM',
 
     /*
     |--------------------------------------------------------------------------
@@ -29,9 +29,9 @@ return [
     |
     */
 
-    'logo' => '<b>App1-</b>OPS',
+    'logo' => '<b>Sistema</b>',
 
-    'logo_mini' => '<b>A</b>OPS',
+    'logo_mini' => '<b>STM</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ return [
     |
     */
 
-    'layout' => null,
+    'layout' => 'fixed',
 
     /*
     |--------------------------------------------------------------------------
@@ -84,15 +84,15 @@ return [
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
 
     'logout_url' => 'logout',
 
-    'logout_method' => null,
+    'logout_method' => 'POST',
 
     'login_url' => 'login',
 
-    'register_url' => 'register',
+    'register_url' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,10 +179,8 @@ return [
         [
            'text' => 'Sair',
            'icon' => 'sign-out-alt',
-           
-           
+           'url' => 'admin/logout',
         ],
-        
     ],
 
     /*
