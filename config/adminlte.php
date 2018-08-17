@@ -116,27 +116,31 @@ return [
         [
             'text' => 'Financeiro',
             'icon' => 'money',
+            'can' => ['Visualizar Financeiro'],
             'submenu' => [
                 [
                 'text' => 'Saldo',
                 'url' => 'admin/balance',
                 'icon' => 'credit-card-alt',
+                'can' => ['Ver Saldo'],                
                 ],
                 [
                     'text' => 'Histórico',
                     'url' => 'admin/historic',
                     'icon' => 'history',
+                    'can' => 'Ver Historico',
                     ],
             ],
         ],
         [
             'text' => 'Posts',
             'icon' => 'crosshairs',
+            'can' => 'View Post',
             'submenu' => [
                 [
                 'text' => 'Posts',
                 'url' => 'admin/posts',
-                'icon' => 'paste',
+                'icon' => 'paste',                
                 ],
             ],
         ],
@@ -163,15 +167,15 @@ return [
                 'can' => 'Administer roles & permissions',
                 ],
                 [
-                'text' => 'Gerenciar Papéis',
+                'text' => 'Gerenciar Funções',
                 'url' => 'admin/roles',
-                'icon' => 'genderless',
+                'icon' => 'map',
                 'can' => 'Administer roles & permissions',
                 ],
                 [
                 'text' => 'Gerenciar Permissões',
                 'url' => 'admin/permissions',
-                'icon' => 'universal-access',
+                'icon' => 'key',
                 'can' => 'Administer roles & permissions',
                 ],
             ],

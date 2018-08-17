@@ -28,7 +28,7 @@ class UserController extends Controller
     */
     public function index() {
     //Get all users and pass it to the view
-        $users = User::all(); 
+        $users = User::orderby('name')->paginate(8); 
         return view('users.index')->with('users', $users);
     }
 

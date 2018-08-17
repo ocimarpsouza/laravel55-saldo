@@ -3,11 +3,7 @@
 @section('title', 'Posts')
 
 @section('content_header')
-    <h1>Posts</h1>
-    <ol class="breadcrumb">
-        <li><a href="">Dashboard</a></li>
-        <li><a href="">Posts</a></li>
-    </ol>
+    <h3>Posts</h3>
 @stop
 
 @section('content')
@@ -15,8 +11,7 @@
         <div class="box-header">
             <div class="box-body">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3>Posts</h3></div>
-                    <div class="panel-heading">Page {{ $posts->currentPage() }} of {{ $posts->lastPage() }}</div>
+                    <div class="panel-heading">Página {{ $posts->currentPage() }} de {{ $posts->lastPage() }}</div>
                     @foreach ($posts as $post)
                         <div class="panel-body">
                             <li style="list-style-type:disc">
@@ -32,9 +27,12 @@
                     <div class="text-center">
                         {!! $posts->links() !!}
                     </div>
-                    </div>
                 </div>
             </div>
+        </div>
+    @can('Create Post')
     <a href="{{ route('posts.create') }}" class="btn btn-success">Adicionar Post</a>
+    @endcan
+    </div>
 @stop
 
